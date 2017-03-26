@@ -8,17 +8,19 @@ namespace Projets_MDL
 {
     class Clubs
     {
+        private int Id;
         private string Nom;
         private string LienSite;
         private string Adresse;
         private string Ville;
-        private string CodePostal;
-        private string Telephone;
+        private int CodePostal;
+        private int Telephone;
         private string EMail;
         private string Type;
 
-        public Clubs(string leNom, string leLien, string lAdresse, string laVille, string CPT, string Tel, string Mail, string leType)
+        public Clubs(int lId, string leNom, string leLien, string lAdresse, string laVille, int CPT, int Tel, string Mail, string leType)
         {
+            this.Id = lId;
             this.Nom = leNom;
             this.LienSite = leLien;
             this.Adresse = lAdresse;
@@ -27,6 +29,23 @@ namespace Projets_MDL
             this.Telephone = Tel;
             this.EMail = Mail;
             this.Type = leType;
+        }
+
+        public Clubs()
+        {
+            
+        }
+
+        public int getId()
+        {
+            return this.Id;
+        }
+
+        public int setId(int lId)
+        {
+            this.Id = lId;
+            return Id;
+
         }
 
         public  string getNom()
@@ -77,24 +96,24 @@ namespace Projets_MDL
 
         }
 
-        public string getCPT()
+        public int getCPT()
         {
             return this.CodePostal;
         }
 
-        public string setCPT(string leCPT)
+        public int setCPT(int leCPT)
         {
             this.CodePostal = leCPT;
             return CodePostal;
 
         }
 
-        public string getTel()
+        public int getTel()
         {
             return this.Telephone;
         }
 
-        public string setTel(string leTel)
+        public int setTel(int leTel)
         {
             this.Telephone = leTel;
             return Telephone;

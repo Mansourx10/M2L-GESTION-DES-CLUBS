@@ -8,6 +8,7 @@ namespace Projets_MDL
 {
     class Adherents
     {
+        private int id;
         private string NumeroLicence;
         private string Sexe;
         private string Nom;
@@ -18,8 +19,9 @@ namespace Projets_MDL
         private string Ville;
         private int Cotisation;
 
-        public Adherents(string leNb, string leSexe, string lenom, string lePrenom, string laNaiss, string lAdresse, int leCp, string laville, int leCotisation)
+        public Adherents(int lid, string leNb, string leSexe, string lenom, string lePrenom, string laNaiss, string lAdresse, int leCp, string laville, int leCotisation)
         {
+            this.id = lid;
             this.NumeroLicence = leNb;
             this.Sexe = leSexe;
             this.Nom = lenom;
@@ -34,6 +36,17 @@ namespace Projets_MDL
         public Adherents()
         {
 
+        }
+
+        public int getID()
+        {
+            return this.id;
+        }
+
+        public int setId(int lId)
+        {
+            this.id = lId;
+            return id;
         }
 
         public string getNumeroLicence()

@@ -54,5 +54,35 @@ namespace Projets_MDL
             Supprimer fenetreSup = new Supprimer();
             fenetreSup.Show();
         }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            DataTable Table = new DataTable();
+            Table.Columns.Add("SEXE", typeof(string));
+            Table.Columns.Add("NOM", typeof(string));
+            Table.Columns.Add("PRENOM", typeof(string));
+            Table.Columns.Add("ADRESSE", typeof(string));
+            Table.Columns.Add("CODEPOSTAL", typeof(int));
+            Table.Columns.Add("LICENCE", typeof(string));
+            Table.Columns.Add("COTISATION", typeof(int));
+            Table.Columns.Add("VILLE", typeof(string));
+            Table.Columns.Add("NAISSANCE", typeof(string));
+
+            ModeleBDD con = new ModeleBDD();
+
+            foreach(Adherents adherent in con.getAdherents())
+            {
+                Table.Rows.Add(adherent.getSexe(), adherent.getNom(), adherent.getPrenom(), adherent.getAdresse(), adherent.getCPT(), adherent.getNumeroLicence(), adherent.getCotisation(), adherent.getVille(), adherent.getNaissance());
+
+            }
+
+            dataGridView1.DataSource = Table;
+            dataGridView1.AutoResizeColumns();
+
+            
+
+        }
+
+
     }
 }

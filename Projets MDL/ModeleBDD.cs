@@ -119,5 +119,173 @@ namespace Projets_MDL
                 connection.Close();
             }
         }
+
+        /// <summary>
+        /// La méthode Read retourne un Adherent en fonction de l'id en parametre. 
+        /// </summary>
+        /// <param name="id">id de l'adherent selectionnedans la dataGridView</param>
+        /// <returns>un adhrent</returns>
+        public Adherents Read(int id)
+        {
+            Adherents lAdherent = null;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM adherents where id=@id";
+
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                //Create a data reader and Execute the command
+                using (MySqlDataReader dataReader = cmd.ExecuteReader())
+                {
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        lAdherent = new Adherents();
+                        lAdherent.setId((int)dataReader["id"]);
+                        lAdherent.setNumeroLicence((string)dataReader["Licence"]);
+                        lAdherent.setNom((string)dataReader["Nom"]);
+                        lAdherent.setPrenom((string)dataReader["Prenom"]);
+                        lAdherent.setNaissance((string)dataReader["Naissance"]);
+                        lAdherent.setAdresse((string)dataReader["Adresse"]);
+                        lAdherent.setCPT((int)dataReader["CodePoastal"]);
+                        lAdherent.setVille((string)dataReader["Ville"]);
+                        lAdherent.setCotisation(dataReader["Cotisation"] != DBNull.Value ? (int)dataReader["Cotisation"] : 0);
+                    }
+                }
+            }
+
+            return lAdherent;
+        }
+
+
+
+
+
+
+
+        /// <summary>
+        /// Methode qui selection tous clubs sur la base de données
+        /// </summary>
+        /// <returns>Return un Listes des clubs</returns>
+        public List<Clubs> getClubs()
+        {
+            List<Clubs> lesClubs = new List<Clubs>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM clubs";
+
+                //Crée Commande
+                MySqlCommand command = new MySqlCommand(query, connection);
+                //On crée un datareader et on execute la commande
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+                    //On li la base de données et on ajiute dans la liste les ahderents de la base de données
+                    while (dataReader.Read())
+                    {
+                        Clubs lClub = new Clubs();
+                        lClub.setId((int)dataReader["Id"]);
+                        lClub.setLienSite((string)dataReader["LienSite"]);
+                        lClub.setMail((string)dataReader["Email"]);
+                        lClub.setNom((string)dataReader["Nom"]);
+                        lClub.setType((string)dataReader["Type"]);
+                        lClub.setTel((int)dataReader["Telephone"]);
+                        lClub.setAdresse((string)dataReader["Adresse"]);
+                        lClub.setCPT((int)dataReader["CodePostal"]);
+                        lClub.setVille((string)dataReader["Ville"]);
+                        
+                        lesClubs.Add(lClub);
+                    }
+
+                }
+
+                connection.Close();
+
+                return lesClubs;
+                
+            }
+        }
+
+        /// <summary>
+        /// methode setClub ajouter un club dans la base dedonnées
+        /// </summary>
+        /// <param name="leClub">est un abjet de la classe Clubs</param>
+        public void setClub(Clubs leClub)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO clubs(Nom, LienSite, Adresse, Ville, CodePostal, Telephone, Email, Type) VALUES (@Nom, @LienSite, @Adresse, @Ville, @CodePostal, @Telephone, @Email, @Type)";
+                command.Parameters.AddWithValue("@Nom", leClub.getNom());
+                command.Parameters.AddWithValue("@LienSite", leClub.getLienSite());
+                command.Parameters.AddWithValue("@Adresse", leClub.getAdresse());
+                command.Parameters.AddWithValue("@Ville", leClub.getVille());
+                command.Parameters.AddWithValue("@CodePostal", leClub.getCPT());
+                command.Parameters.AddWithValue("@Telephone", leClub.getTel());
+                command.Parameters.AddWithValue("@Email", leClub.getEMail());
+                command.Parameters.AddWithValue("@Type", leClub.getType());
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Methode qui permet de supprimer un club de la base de données
+        /// </summary>
+        /// <param name="club">L'ID du club a supprimer de la base de données</param>
+        public void subClub(int club)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM clubs WHERE id=@id";
+
+                //on crée la commande
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@id", club);
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// La méthode Read retourne un club en fonction de l'id en parametre. 
+        /// </summary>
+        /// <param name="id">id du club selectionne dans la dataGridView</param>
+        /// <returns>un club</returns>
+        public void UPDATEClub(Clubs leClub)
+        {
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "UPDATE clubs SET Nom=@Nom, LienSite=@LienSite, Adresse=@Adresse, Ville=@Ville, CodePostal=@CodePostal, Telephone=@Telephone, Email=@Email, Type=@Type WHERE id=@id";
+                command.Parameters.AddWithValue("@Id", leClub.getId());
+                command.Parameters.AddWithValue("@Nom", leClub.getNom());
+                command.Parameters.AddWithValue("@LienSite", leClub.getLienSite());
+                command.Parameters.AddWithValue("@Adresse", leClub.getAdresse());
+                command.Parameters.AddWithValue("@Ville", leClub.getVille());
+                command.Parameters.AddWithValue("@CodePostal", leClub.getCPT());
+                command.Parameters.AddWithValue("@Telephone", leClub.getTel());
+                command.Parameters.AddWithValue("@Email", leClub.getEMail());
+                command.Parameters.AddWithValue("@Type", leClub.getType());
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+          
+        }
+
+
     }
 }
