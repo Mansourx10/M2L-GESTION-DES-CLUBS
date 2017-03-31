@@ -127,6 +127,7 @@
     <Compile Include="Supprimer.Designer.cs">
       <DependentUpon>Supprimer.cs</DependentUpon>
     </Compile>
+    <Compile Include="TypeClub.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

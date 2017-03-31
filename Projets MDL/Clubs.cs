@@ -16,9 +16,9 @@ namespace Projets_MDL
         private int CodePostal;
         private int Telephone;
         private string EMail;
-        private string Type;
+        private TypeClub Type;
 
-        public Clubs(int lId, string leNom, string leLien, string lAdresse, string laVille, int CPT, int Tel, string Mail, string leType)
+        public Clubs(int lId, string leNom, string leLien, string lAdresse, string laVille, int CPT, int Tel, string Mail, TypeClub leType)
         {
             this.Id = lId;
             this.Nom = leNom;
@@ -132,16 +132,18 @@ namespace Projets_MDL
 
         }
 
-        public string getType()
+        
+        public TypeClub getType()
         {
             return this.Type;
         }
 
-        public string setType(string leType)
+        public TypeClub setType(TypeClub leType)
         {
             this.Type = leType;
             return Type;
 
         }
+        
     }
 }

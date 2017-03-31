@@ -25,7 +25,7 @@ namespace Projets_MDL
 
         void FillDataGridView()
         {
-            
+
             DataTable Table = new DataTable();
             Table.Columns.Add("ID", typeof(int));
             Table.Columns.Add("NOM", typeof(string));
@@ -41,7 +41,7 @@ namespace Projets_MDL
 
             foreach (Clubs Club in con.getClubs())
             {
-                Table.Rows.Add( Club.getId(), Club.getNom(),Club.getLienSite(), Club.getAdresse(), Club.getVille(), Club.getCPT(), Club.getTel(), Club.getEMail(), Club.getType());
+                Table.Rows.Add( Club.getId(), Club.getNom(),Club.getLienSite(), Club.getAdresse(), Club.getVille(), Club.getCPT(), Club.getTel(), Club.getEMail(), Club.getType().getLibelle());
 
             }
 
@@ -49,57 +49,7 @@ namespace Projets_MDL
             dataGridView1.AutoResizeColumns();
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Clubs club = new Clubs();
-
-            club.setLienSite(textLienSite.Text);
-            club.setNom(textNom.Text);
-            club.setMail(textEmail.Text);
-            club.setType(textType.Text);
-            club.setAdresse(textAdresse.Text);
-            club.setCPT(Int32.Parse(textCPT.Text));
-            club.setVille(textVille.Text);
-            club.setTel(Int32.Parse(textTel.Text));
-
-            ModeleBDD bd = new ModeleBDD();
-
-            bd.setClub(club);
-
-           
-            textNom.Text = "";
-            textLienSite.Text = "";
-            textType.Text = "";
-            textEmail.Text = "";
-            textAdresse.Text = "";
-            textCPT.Text = "";
-            textVille.Text = "";
-            textTel.Text = "";
-            labelInfo.Text = club.getNom() + " a été ajouter avec succès ";
-            dataGridView1.ClearSelection();
-            FillDataGridView();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            int id = Int32.Parse(labelID.Text);
-            ModeleBDD con = new ModeleBDD();
-            con.subClub(id);
-            labelInfo.Text = textNom + " a été supprimé";
-            labelID.Text = "";
-            textNom.Text = "";
-            textLienSite.Text = "";
-            textType.Text = "";
-            textEmail.Text = "";
-            textAdresse.Text = "";
-            textCPT.Text = "";
-            textVille.Text = "";
-            textTel.Text = "";
-            dataGridView1.ClearSelection();
-            FillDataGridView();
-
-        }
+ 
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -121,15 +71,53 @@ namespace Projets_MDL
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonInsert_Click(object sender, EventArgs e)
         {
+            Clubs club = new Clubs();
+            TypeClub letype = new TypeClub();
+            letype.setId(Int32.Parse(textType.Text));
+            letype.setLibelle(textType.Text);
+
+            club.setLienSite(textLienSite.Text);
+            club.setNom(textNom.Text);
+            club.setMail(textEmail.Text);
+            club.setType(letype);
+            club.setAdresse(textAdresse.Text);
+            club.setCPT(Int32.Parse(textCPT.Text));
+            club.setVille(textVille.Text);
+            club.setTel(Int32.Parse(textTel.Text));
+
+            ModeleBDD bd = new ModeleBDD();
+
+            bd.setClub(club);
+
+
+            textNom.Text = "";
+            textLienSite.Text = "";
+            textType.Text = "";
+            textEmail.Text = "";
+            textAdresse.Text = "";
+            textCPT.Text = "";
+            textVille.Text = "";
+            textTel.Text = "";
+            labelInfo.Text = club.getNom() + " a été ajouter avec succès ";
+            dataGridView1.ClearSelection();
+            FillDataGridView();
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            TypeClub letype = new TypeClub();
+            letype.setId(Int32.Parse(textType.Text));
+            letype.setLibelle(textType.Text);
+
             Clubs club = new Clubs();
 
             club.setId(Int32.Parse(labelID.Text));
             club.setLienSite(textLienSite.Text);
             club.setNom(textNom.Text);
             club.setMail(textEmail.Text);
-            club.setType(textType.Text);
+            club.setType(letype);
             club.setAdresse(textAdresse.Text);
             club.setCPT(Int32.Parse(textCPT.Text));
             club.setVille(textVille.Text);
@@ -138,8 +126,27 @@ namespace Projets_MDL
             ModeleBDD bd = new ModeleBDD();
 
             bd.UPDATEClub(club);
-            
+
             labelInfo.Text = club.getNom() + " a été modifié ";
+            dataGridView1.ClearSelection();
+            FillDataGridView();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            int id = Int32.Parse(labelID.Text);
+            ModeleBDD con = new ModeleBDD();
+            con.subClub(id);
+            labelInfo.Text = textNom + " a été supprimé";
+            labelID.Text = "";
+            textNom.Text = "";
+            textLienSite.Text = "";
+            textType.Text = "";
+            textEmail.Text = "";
+            textAdresse.Text = "";
+            textCPT.Text = "";
+            textVille.Text = "";
+            textTel.Text = "";
             dataGridView1.ClearSelection();
             FillDataGridView();
         }

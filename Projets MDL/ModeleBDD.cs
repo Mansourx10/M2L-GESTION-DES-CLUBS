@@ -20,7 +20,7 @@ namespace Projets_MDL
         {
             string server = "localhost";
             string port = "3306";
-            string database = "projetm2l";
+            string database = "gestion_clubs";
             string uid = "root";
             string password = "";
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
@@ -163,11 +163,7 @@ namespace Projets_MDL
         }
 
 
-
-
-
-
-
+        //La methode est modifié
         /// <summary>
         /// Methode qui selection tous clubs sur la base de données
         /// </summary>
@@ -179,7 +175,7 @@ namespace Projets_MDL
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM clubs";
+                string query = "SELECT c.id AS IdClub, c.Nom, c.LienSIte, c.Adresse, c.Ville, c.CodePostal, c.Telephone, c.Email, c.id_type, t.id AS IdType, t.Libelle From clubs AS c INNER JOIN type AS t ON c.id_type = t.id";
 
                 //Crée Commande
                 MySqlCommand command = new MySqlCommand(query, connection);
@@ -189,12 +185,16 @@ namespace Projets_MDL
                     //On li la base de données et on ajiute dans la liste les ahderents de la base de données
                     while (dataReader.Read())
                     {
+                        TypeClub Type = new TypeClub();
+                        Type.setId((int)dataReader["IdType"]);
+                        Type.setLibelle((string)dataReader["Libelle"]);
+
                         Clubs lClub = new Clubs();
-                        lClub.setId((int)dataReader["Id"]);
+                        lClub.setId((int)dataReader["IdClub"]);
                         lClub.setLienSite((string)dataReader["LienSite"]);
                         lClub.setMail((string)dataReader["Email"]);
                         lClub.setNom((string)dataReader["Nom"]);
-                        lClub.setType((string)dataReader["Type"]);
+                        lClub.setType(Type);
                         lClub.setTel((int)dataReader["Telephone"]);
                         lClub.setAdresse((string)dataReader["Adresse"]);
                         lClub.setCPT((int)dataReader["CodePostal"]);
@@ -258,9 +258,9 @@ namespace Projets_MDL
         }
 
         /// <summary>
-        /// La méthode Read retourne un club en fonction de l'id en parametre. 
+        /// La méthode modifie un club en fonction de l'objet Clubs en parametre. 
         /// </summary>
-        /// <param name="id">id du club selectionne dans la dataGridView</param>
+        /// <param name="Clubs">Leclub a modifié </param>
         /// <returns>un club</returns>
         public void UPDATEClub(Clubs leClub)
         {
@@ -286,6 +286,45 @@ namespace Projets_MDL
           
         }
 
+        //La methode est modifié
+        /// <summary>
+        /// Methode qui selection tous Typeclub de la base de données
+        /// </summary>
+        /// <returns>Return une Liste de Typeclub</returns>
+        public List<TypeClub> getTypeClub()
+        {
+            List<TypeClub> lesTypeClub = new List<TypeClub>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * From type";
+
+                //Crée Commande
+                MySqlCommand command = new MySqlCommand(query, connection);
+                //On crée un datareader et on execute la commande
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+                    //On li la base de données et on ajoute dans la liste les TypeClub de la base
+                    while (dataReader.Read())
+                    {
+                        TypeClub Type = new TypeClub();
+                        Type.setId((int)dataReader["IdType"]);
+                        Type.setLibelle((string)dataReader["Libelle"]);
+
+                        
+
+                        lesTypeClub.Add(Type);
+                    }
+
+                }
+
+                connection.Close();
+
+                return lesTypeClub;
+
+            }
+        }
 
     }
 }

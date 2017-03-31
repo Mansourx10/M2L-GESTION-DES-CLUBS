@@ -53,6 +53,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.labelInfo = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,7 +143,7 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "Insertion";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
             // textNom
             // 
@@ -236,7 +237,7 @@
             this.button2.TabIndex = 20;
             this.button2.Text = "Supprimé";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // button4
             // 
@@ -249,7 +250,7 @@
             this.button4.TabIndex = 22;
             this.button4.Text = "modifié";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // labelInfo
             // 
@@ -262,11 +263,24 @@
             // labelID
             // 
             this.labelID.AutoSize = true;
-            this.labelID.Location = new System.Drawing.Point(44, 34);
+            this.labelID.Location = new System.Drawing.Point(30, 28);
             this.labelID.Name = "labelID";
             this.labelID.Size = new System.Drawing.Size(35, 13);
             this.labelID.TabIndex = 24;
             this.labelID.Text = "label9";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Test1",
+            "Test2",
+            "Test3",
+            "Test4"});
+            this.comboBox1.Location = new System.Drawing.Point(63, 191);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 25;
             // 
             // Form2
             // 
@@ -275,7 +289,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(995, 575);
+            this.ClientSize = new System.Drawing.Size(975, 601);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.labelID);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.button4);
@@ -331,5 +346,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
