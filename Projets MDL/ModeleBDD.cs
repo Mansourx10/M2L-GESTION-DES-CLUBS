@@ -222,7 +222,7 @@ namespace Projets_MDL
             {
                 connection.Open();
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO clubs(Nom, LienSite, Adresse, Ville, CodePostal, Telephone, Email, Type) VALUES (@Nom, @LienSite, @Adresse, @Ville, @CodePostal, @Telephone, @Email, @Type)";
+                command.CommandText = "INSERT INTO clubs(Nom, LienSite, Adresse, Ville, CodePostal, Telephone, Email, id_type) VALUES (@Nom, @LienSite, @Adresse, @Ville, @CodePostal, @Telephone, @Email, (SELECT id FROM Type WHERE Libelle = @Type))";
                 command.Parameters.AddWithValue("@Nom", leClub.getNom());
                 command.Parameters.AddWithValue("@LienSite", leClub.getLienSite());
                 command.Parameters.AddWithValue("@Adresse", leClub.getAdresse());
@@ -230,9 +230,10 @@ namespace Projets_MDL
                 command.Parameters.AddWithValue("@CodePostal", leClub.getCPT());
                 command.Parameters.AddWithValue("@Telephone", leClub.getTel());
                 command.Parameters.AddWithValue("@Email", leClub.getEMail());
-                command.Parameters.AddWithValue("@Type", leClub.getType());
+                command.Parameters.AddWithValue("@Type", leClub.getType().getLibelle());
                 command.ExecuteNonQuery();
                 connection.Close();
+                
             }
         }
 
@@ -309,7 +310,7 @@ namespace Projets_MDL
                     while (dataReader.Read())
                     {
                         TypeClub Type = new TypeClub();
-                        Type.setId((int)dataReader["IdType"]);
+                        Type.setId((int)dataReader["Id"]);
                         Type.setLibelle((string)dataReader["Libelle"]);
 
                         

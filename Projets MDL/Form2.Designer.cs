@@ -54,6 +54,7 @@
             this.labelInfo = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -272,15 +273,20 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Test1",
-            "Test2",
-            "Test3",
-            "Test4"});
-            this.comboBox1.Location = new System.Drawing.Point(63, 191);
+            this.comboBox1.Location = new System.Drawing.Point(554, 163);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(195, 21);
             this.comboBox1.TabIndex = 25;
+            this.comboBox1.Click += new System.EventHandler(this.comboBox1_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(565, 199);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "Créé un type";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 
@@ -290,6 +296,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(975, 601);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.labelID);
             this.Controls.Add(this.labelInfo);
@@ -347,5 +354,6 @@
         private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button3;
     }
 }

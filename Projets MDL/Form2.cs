@@ -73,11 +73,11 @@ namespace Projets_MDL
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            Clubs club = new Clubs();
+            
             TypeClub letype = new TypeClub();
-            letype.setId(Int32.Parse(textType.Text));
-            letype.setLibelle(textType.Text);
+            letype.setLibelle(comboBox1.Text);
 
+            Clubs club = new Clubs();
             club.setLienSite(textLienSite.Text);
             club.setNom(textNom.Text);
             club.setMail(textEmail.Text);
@@ -150,5 +150,18 @@ namespace Projets_MDL
             dataGridView1.ClearSelection();
             FillDataGridView();
         }
+
+        private void comboBox1_Click(object sender, EventArgs e)
+        {
+            comboBox1.Items.Clear();
+            ModeleBDD con = new ModeleBDD();
+            List<TypeClub> ListeType = con.getTypeClub();
+            foreach (TypeClub liste in ListeType)
+            {
+                comboBox1.Items.Add(liste.getLibelle().ToString());
+            }
+            
+           
+        }
     }
-}
+    }
