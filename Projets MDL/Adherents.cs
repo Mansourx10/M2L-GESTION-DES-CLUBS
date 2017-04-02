@@ -9,7 +9,8 @@ namespace Projets_MDL
     class Adherents
     {
         private int id;
-        private string NumeroLicence;
+        private Clubs club;
+        private string Licence;
         private string Sexe;
         private string Nom;
         private string Prenom;
@@ -19,10 +20,11 @@ namespace Projets_MDL
         private string Ville;
         private int Cotisation;
 
-        public Adherents(int lid, string leNb, string leSexe, string lenom, string lePrenom, string laNaiss, string lAdresse, int leCp, string laville, int leCotisation)
+        public Adherents(int lid, Clubs leclub, string leNb, string leSexe, string lenom, string lePrenom, string laNaiss, string lAdresse, int leCp, string laville, int leCotisation)
         {
             this.id = lid;
-            this.NumeroLicence = leNb;
+            this.club = leclub;
+            this.Licence = leNb;
             this.Sexe = leSexe;
             this.Nom = lenom;
             this.Prenom = lePrenom;
@@ -38,7 +40,7 @@ namespace Projets_MDL
 
         }
 
-        public int getID()
+        public int getId()
         {
             return this.id;
         }
@@ -49,15 +51,26 @@ namespace Projets_MDL
             return id;
         }
 
-        public string getNumeroLicence()
+        public Clubs getClub()
         {
-            return this.NumeroLicence;
+            return this.club;
         }
 
-        public string setNumeroLicence(string leNumeroLicence)
+        public Clubs setClub(Clubs leclub)
         {
-            this.NumeroLicence = leNumeroLicence;
-            return NumeroLicence;
+            this.club = leclub;
+            return leclub;
+        }
+
+        public string getLicence()
+        {
+            return this.Licence;
+        }
+
+        public string setLicence(string laLicence)
+        {
+            this.Licence = laLicence;
+            return Licence;
         }
 
         public string getSexe()

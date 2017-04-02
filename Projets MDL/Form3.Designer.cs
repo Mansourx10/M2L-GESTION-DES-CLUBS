@@ -52,6 +52,9 @@
             this.textNaissance = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.labelID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,6 +187,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(638, 234);
             this.dataGridView1.TabIndex = 16;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // buttonInsertion
             // 
@@ -207,18 +211,19 @@
             this.button2.TabIndex = 18;
             this.button2.Text = "Modifié";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Red;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(578, 107);
+            this.button3.Location = new System.Drawing.Point(578, 98);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 19;
             this.button3.Text = "Supprimer";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // comboBox1
             // 
@@ -255,6 +260,33 @@
             this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 24;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(396, 63);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(28, 13);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "Club";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(457, 60);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(100, 21);
+            this.comboBox2.TabIndex = 26;
+            this.comboBox2.Click += new System.EventHandler(this.comboBox2_Click);
+            // 
+            // labelID
+            // 
+            this.labelID.AutoSize = true;
+            this.labelID.Location = new System.Drawing.Point(560, 169);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(16, 13);
+            this.labelID.TabIndex = 27;
+            this.labelID.Text = "...";
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,6 +295,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(706, 459);
+            this.Controls.Add(this.labelID);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textNaissance);
             this.Controls.Add(this.label9);
@@ -289,7 +324,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form3";
             this.Text = "Adhérents";
-            this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -321,5 +355,8 @@
         private System.Windows.Forms.TextBox textNaissance;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label labelID;
     }
 }

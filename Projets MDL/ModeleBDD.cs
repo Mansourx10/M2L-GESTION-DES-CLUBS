@@ -26,144 +26,8 @@ namespace Projets_MDL
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
         }
-        /// <summary>
-        /// methode setAdherents ajouter un les attribust d'un adherents dans un tableau
-        /// </summary>
-        /// <param name="me">est un abjet de la classe Adherents</param>
-        public void setAdherent(Adherents me)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO adherents(Licence, Sexe, Nom, Prenom, Naissance, Adresse, CodePostal, Ville, Cotisation) VALUES (@Licence, @Sexe, @Nom, @Prenom, @Naissance, @Adresse, @CodePostal, @Ville, @Cotisation)";
-                command.Parameters.AddWithValue("@Licence", me.getNumeroLicence());
-                command.Parameters.AddWithValue("@Sexe", me.getSexe());
-                command.Parameters.AddWithValue("@Nom", me.getNom());
-                command.Parameters.AddWithValue("@Prenom", me.getPrenom());
-                command.Parameters.AddWithValue("@Naissance", me.getNaissance());
-                command.Parameters.AddWithValue("@Adresse", me.getAdresse());
-                command.Parameters.AddWithValue("@CodePostal", me.getCPT());
-                command.Parameters.AddWithValue("@Ville", me.getVille());
-                command.Parameters.AddWithValue("@Cotisation", me.getCotisation());
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-        }
-
-
-
-        /// <summary>
-        /// Methode qui selection tous adhernts sur la base de données
-        /// </summary>
-        /// <returns>Return un Listes des adherents</returns>
-        public List<Adherents> getAdherents()
-        {
-            List<Adherents> lesAdherents = new List<Adherents>();
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT * FROM adherents";
-
-                //Crée Commande
-                MySqlCommand command = new MySqlCommand(query, connection);
-                //On crée un datareader et on execute la commande
-                using (MySqlDataReader dataReader = command.ExecuteReader())
-                {
-                    //On li la base de données et on ajiute dans la liste les ahderents de la base de données
-                    while (dataReader.Read())
-                    {
-                        Adherents lAdherent = new Adherents();
-                        lAdherent.setNumeroLicence((string)dataReader["Licence"]);
-                        lAdherent.setSexe((string)dataReader["Sexe"]);
-                        lAdherent.setNom((string)dataReader["Nom"]);
-                        lAdherent.setPrenom((string)dataReader["Prenom"]);
-                        lAdherent.setNaissance((string)dataReader["Naissance"]);
-                        lAdherent.setAdresse((string)dataReader["Adresse"]);
-                        lAdherent.setCPT((int)dataReader["CodePostal"]);
-                        lAdherent.setVille((string)dataReader["Ville"]);
-                        lAdherent.setCotisation((int)dataReader["Cotisation"]);
-
-                        lesAdherents.Add(lAdherent);
-                    }
-
-                }
-
-                connection.Close();
-
-                return lesAdherents;
-
-                
-            }
-
-        }
-
-        /// <summary>
-        /// Methode qui permet de supprimer un adherents de la base de données
-        /// </summary>
-        /// <param name="nom">Le nom de l'adherent a supprimer de la table</param>
-        public void subAdherents(string nom)
-        {
-            using(MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "DELETE FROM adherents WHERE nom=@nom";
-
-                //on crée la commande
-                MySqlCommand command = new MySqlCommand(query, connection);
-
-                command.Parameters.AddWithValue("@nom", nom);
-                command.ExecuteNonQuery();
-
-                connection.Close();
-            }
-        }
-
-        /// <summary>
-        /// La méthode Read retourne un Adherent en fonction de l'id en parametre. 
-        /// </summary>
-        /// <param name="id">id de l'adherent selectionnedans la dataGridView</param>
-        /// <returns>un adhrent</returns>
-        public Adherents Read(int id)
-        {
-            Adherents lAdherent = null;
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT * FROM adherents where id=@id";
-
-                //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                cmd.Parameters.AddWithValue("@id", id);
-
-                //Create a data reader and Execute the command
-                using (MySqlDataReader dataReader = cmd.ExecuteReader())
-                {
-                    //Read the data and store them in the list
-                    while (dataReader.Read())
-                    {
-                        lAdherent = new Adherents();
-                        lAdherent.setId((int)dataReader["id"]);
-                        lAdherent.setNumeroLicence((string)dataReader["Licence"]);
-                        lAdherent.setNom((string)dataReader["Nom"]);
-                        lAdherent.setPrenom((string)dataReader["Prenom"]);
-                        lAdherent.setNaissance((string)dataReader["Naissance"]);
-                        lAdherent.setAdresse((string)dataReader["Adresse"]);
-                        lAdherent.setCPT((int)dataReader["CodePoastal"]);
-                        lAdherent.setVille((string)dataReader["Ville"]);
-                        lAdherent.setCotisation(dataReader["Cotisation"] != DBNull.Value ? (int)dataReader["Cotisation"] : 0);
-                    }
-                }
-            }
-
-            return lAdherent;
-        }
-
-
-        //La methode est modifié
+ 
+        //La methode est modifié //club
         /// <summary>
         /// Methode qui selection tous clubs sur la base de données
         /// </summary>
@@ -270,7 +134,7 @@ namespace Projets_MDL
             {
                 connection.Open();
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "UPDATE clubs SET Nom=@Nom, LienSite=@LienSite, Adresse=@Adresse, Ville=@Ville, CodePostal=@CodePostal, Telephone=@Telephone, Email=@Email, Type=@Type WHERE id=@id";
+                command.CommandText = "UPDATE clubs SET Nom=@Nom, LienSite=@LienSite, Adresse=@Adresse, Ville=@Ville, CodePostal=@CodePostal, Telephone=@Telephone, Email=@Email, id_type= ( SELECT id FROM type WHERE Libelle=@Type ) WHERE id=@id";
                 command.Parameters.AddWithValue("@Id", leClub.getId());
                 command.Parameters.AddWithValue("@Nom", leClub.getNom());
                 command.Parameters.AddWithValue("@LienSite", leClub.getLienSite());
@@ -279,7 +143,7 @@ namespace Projets_MDL
                 command.Parameters.AddWithValue("@CodePostal", leClub.getCPT());
                 command.Parameters.AddWithValue("@Telephone", leClub.getTel());
                 command.Parameters.AddWithValue("@Email", leClub.getEMail());
-                command.Parameters.AddWithValue("@Type", leClub.getType());
+                command.Parameters.AddWithValue("@Type", leClub.getType().getLibelle());
                 command.ExecuteNonQuery();
                 connection.Close();
             }
@@ -287,7 +151,7 @@ namespace Projets_MDL
           
         }
 
-        //La methode est modifié
+        //La methode est modifié //typeclub
         /// <summary>
         /// Methode qui selection tous Typeclub de la base de données
         /// </summary>
@@ -327,5 +191,205 @@ namespace Projets_MDL
             }
         }
 
+        public void setTypeSport(TypeClub Type)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO type(Libelle) VALUES (@Libelle)";
+                command.Parameters.AddWithValue("@Libelle", Type.getLibelle());
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public void supTypeSport(TypeClub type)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM type WHERE Libelle=@Libelle";
+
+                //on crée la commande
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@Libelle", type.getLibelle());
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+        //les sont modifié //adherent
+        /// <summary>
+        /// Methode qui selection tous adhernts sur la base de données
+        /// </summary>
+        /// <returns>Return un Listes des adherents</returns>
+        public List<Adherents> getAdherents()
+        {
+            List<Adherents> lesAdherents = new List<Adherents>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT a.id AS IdAdherent, a.Licence, a.Sexe, a.Nom, a.Prenom, a.Naissance, a.Adresse, a.CodePostal, a.Ville, a.Cotisation, c.id AS IdClub, c.Nom AS NomClub FROM adherents AS a INNER JOIN clubs AS c ON a.id_clubs=c.id";
+                
+                //Crée Commande
+                MySqlCommand command = new MySqlCommand(query, connection);
+                //On crée un datareader et on execute la commande
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+                    //On li la base de données et on ajoute dans la liste les ahderents de la base de données
+                    while (dataReader.Read())
+                    {
+                        Clubs club = new Clubs();
+                        club.setId((int)dataReader["IdClub"]);
+                        club.setNom((string)dataReader["NomClub"]);
+                        Adherents lAdherent = new Adherents();
+                        lAdherent.setId((int)dataReader["IdAdherent"]);
+                        lAdherent.setClub(club);
+                        lAdherent.setLicence((string)dataReader["Licence"]);
+                        lAdherent.setSexe((string)dataReader["Sexe"]);
+                        lAdherent.setNom((string)dataReader["Nom"]);
+                        lAdherent.setPrenom((string)dataReader["Prenom"]);
+                        lAdherent.setNaissance((string)dataReader["Naissance"]);
+                        lAdherent.setAdresse((string)dataReader["Adresse"]);
+                        lAdherent.setCPT((int)dataReader["CodePostal"]);
+                        lAdherent.setVille((string)dataReader["Ville"]);
+                        lAdherent.setCotisation((int)dataReader["Cotisation"]);
+
+                        lesAdherents.Add(lAdherent);
+                    }
+
+                }
+
+                connection.Close();
+
+                return lesAdherents;
+
+
+            }
+
+        }
+
+        /// <summary>
+        /// methode setAdherents ajouter un les attribust d'un adherents dans un tableau
+        /// </summary>
+        /// <param name="me">est un abjet de la classe Adherents</param>
+        public void setAdherent(Adherents me)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO adherents(id_clubs, Licence, Sexe, Nom, Prenom, Naissance, Adresse, CodePostal, Ville, Cotisation) VALUES ((SELECT id FROM clubs WHERE Nom = @Club), @Licence, @Sexe, @Nom, @Prenom, @Naissance, @Adresse, @CodePostal, @Ville, @Cotisation)";
+                command.Parameters.AddWithValue("@Club", me.getClub().getNom());
+                command.Parameters.AddWithValue("@Licence", me.getLicence());
+                command.Parameters.AddWithValue("@Sexe", me.getSexe());
+                command.Parameters.AddWithValue("@Nom", me.getNom());
+                command.Parameters.AddWithValue("@Prenom", me.getPrenom());
+                command.Parameters.AddWithValue("@Naissance", me.getNaissance());
+                command.Parameters.AddWithValue("@Adresse", me.getAdresse());
+                command.Parameters.AddWithValue("@CodePostal", me.getCPT());
+                command.Parameters.AddWithValue("@Ville", me.getVille());
+                command.Parameters.AddWithValue("@Cotisation", me.getCotisation());
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Methode qui permet de supprimer un adherents de la base de données
+        /// </summary>
+        /// <param name="nom">Le nom de l'adherent a supprimer de la table</param>
+        public void supAdherents(int id)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM adherents WHERE id=@id";
+
+                //on crée la commande
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lAdherent"></param>
+        public void UPDATEAdherent(Adherents lAdherent)
+        {
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "UPDATE adherents SET id_clubs=(SELECT id FROM clubs WHERE Nom=@NomClub), Licence=@Licence, Sexe=@Sexe, Nom=@Nom, Prenom=@Prenom, Naissance=@Naissance, Adresse=@Adresse, CodePostal=@CodePostal, Ville=@Ville,  Cotisation=@Cotisation WHERE id=@id";
+                command.Parameters.AddWithValue("@Id", lAdherent.getId());
+                command.Parameters.AddWithValue("@NomClub", lAdherent.getClub().getNom());
+                command.Parameters.AddWithValue("@Licence", lAdherent.getLicence());
+                command.Parameters.AddWithValue("@Nom", lAdherent.getNom());
+                command.Parameters.AddWithValue("@Prenom", lAdherent.getPrenom());
+                command.Parameters.AddWithValue("@Sexe", lAdherent.getSexe());
+                command.Parameters.AddWithValue("@Naissance", lAdherent.getNaissance());
+                command.Parameters.AddWithValue("@CodePostal", lAdherent.getCPT());
+                command.Parameters.AddWithValue("@Adresse", lAdherent.getAdresse());
+                command.Parameters.AddWithValue("@Ville", lAdherent.getVille());
+                command.Parameters.AddWithValue("@Cotisation", lAdherent.getCotisation());
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+
+        }
+
+        /// <summary>
+        /// La méthode Read retourne un Adherent en fonction de l'id en parametre. 
+        /// </summary>
+        /// <param name="id">id de l'adherent selectionnedans la dataGridView</param>
+        /// <returns>un adhrent</returns>
+        public Adherents Read(int id)
+        {
+            Adherents lAdherent = null;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM adherents where id=@id";
+
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                //Create a data reader and Execute the command
+                using (MySqlDataReader dataReader = cmd.ExecuteReader())
+                {
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        lAdherent = new Adherents();
+                        lAdherent.setId((int)dataReader["id"]);
+                        lAdherent.setLicence((string)dataReader["Licence"]);
+                        lAdherent.setNom((string)dataReader["Nom"]);
+                        lAdherent.setPrenom((string)dataReader["Prenom"]);
+                        lAdherent.setNaissance((string)dataReader["Naissance"]);
+                        lAdherent.setAdresse((string)dataReader["Adresse"]);
+                        lAdherent.setCPT((int)dataReader["CodePoastal"]);
+                        lAdherent.setVille((string)dataReader["Ville"]);
+                        lAdherent.setCotisation(dataReader["Cotisation"] != DBNull.Value ? (int)dataReader["Cotisation"] : 0);
+                    }
+                }
+            }
+
+            return lAdherent;
+        }
     }
 }

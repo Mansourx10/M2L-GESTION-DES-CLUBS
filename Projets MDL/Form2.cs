@@ -53,8 +53,6 @@ namespace Projets_MDL
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-
             if(e.RowIndex >= 0)
             {
                 DataGridViewRow Ranger = this.dataGridView1.Rows[e.RowIndex];
@@ -65,7 +63,7 @@ namespace Projets_MDL
                 textVille.Text = Ranger.Cells["VILLE"].Value.ToString();
                 textEmail.Text = Ranger.Cells["EMAIL"].Value.ToString();
                 textTel.Text = Ranger.Cells["TELEPHONE"].Value.ToString();
-                textType.Text = Ranger.Cells["TYPE"].Value.ToString();
+                comboBox1.Text = Ranger.Cells["TYPE"].Value.ToString();
                 labelID.Text = Ranger.Cells["ID"].Value.ToString();
 
             }
@@ -94,7 +92,7 @@ namespace Projets_MDL
 
             textNom.Text = "";
             textLienSite.Text = "";
-            textType.Text = "";
+            comboBox1.Text = "";
             textEmail.Text = "";
             textAdresse.Text = "";
             textCPT.Text = "";
@@ -108,8 +106,7 @@ namespace Projets_MDL
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             TypeClub letype = new TypeClub();
-            letype.setId(Int32.Parse(textType.Text));
-            letype.setLibelle(textType.Text);
+            letype.setLibelle(comboBox1.Text);
 
             Clubs club = new Clubs();
 
@@ -141,7 +138,7 @@ namespace Projets_MDL
             labelID.Text = "";
             textNom.Text = "";
             textLienSite.Text = "";
-            textType.Text = "";
+            comboBox1.Text = "";
             textEmail.Text = "";
             textAdresse.Text = "";
             textCPT.Text = "";
@@ -160,8 +157,12 @@ namespace Projets_MDL
             {
                 comboBox1.Items.Add(liste.getLibelle().ToString());
             }
-            
-           
+        }
+
+        private void buttonType_Click(object sender, EventArgs e)
+        {
+            Form5Type F5 = new Form5Type();
+            F5.Show();
         }
     }
     }
