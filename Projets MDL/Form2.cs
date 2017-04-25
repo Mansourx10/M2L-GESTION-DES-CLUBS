@@ -49,8 +49,6 @@ namespace Projets_MDL
             dataGridView1.AutoResizeColumns();
         }
 
- 
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex >= 0)
