@@ -51,9 +51,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.labelInfo = new System.Windows.Forms.Label();
-            this.labelID = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonType = new System.Windows.Forms.Button();
+            this.textID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,7 +141,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
-            this.button1.Text = "Insertion";
+            this.button1.Text = "Ajouter";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
@@ -158,6 +158,7 @@
             this.textTel.Name = "textTel";
             this.textTel.Size = new System.Drawing.Size(195, 20);
             this.textTel.TabIndex = 10;
+            this.textTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textTel_KeyPress);
             // 
             // textCPT
             // 
@@ -165,6 +166,7 @@
             this.textCPT.Name = "textCPT";
             this.textCPT.Size = new System.Drawing.Size(195, 20);
             this.textCPT.TabIndex = 11;
+            this.textCPT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCPT_KeyPress);
             // 
             // textLienSite
             // 
@@ -197,6 +199,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -228,7 +231,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 20;
-            this.button2.Text = "Supprimé";
+            this.button2.Text = "Supprimer";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
@@ -241,7 +244,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 22;
-            this.button4.Text = "modifié";
+            this.button4.Text = "Modifier";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
@@ -253,17 +256,9 @@
             this.labelInfo.Size = new System.Drawing.Size(0, 13);
             this.labelInfo.TabIndex = 23;
             // 
-            // labelID
-            // 
-            this.labelID.AutoSize = true;
-            this.labelID.Location = new System.Drawing.Point(985, 55);
-            this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(35, 13);
-            this.labelID.TabIndex = 24;
-            this.labelID.Text = "label9";
-            // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(502, 117);
             this.comboBox1.Name = "comboBox1";
@@ -281,17 +276,26 @@
             this.buttonType.UseVisualStyleBackColor = true;
             this.buttonType.Click += new System.EventHandler(this.buttonType_Click);
             // 
+            // textID
+            // 
+            this.textID.Location = new System.Drawing.Point(11, 154);
+            this.textID.Name = "textID";
+            this.textID.Size = new System.Drawing.Size(107, 20);
+            this.textID.TabIndex = 27;
+            this.textID.Visible = false;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(939, 564);
+            this.ClientSize = new System.Drawing.Size(934, 564);
+            this.Controls.Add(this.textID);
             this.Controls.Add(this.buttonType);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.labelID);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
@@ -343,8 +347,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label labelInfo;
-        private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonType;
+        private System.Windows.Forms.TextBox textID;
     }
 }

@@ -14,13 +14,13 @@ namespace Projets_MDL
         private string Sexe;
         private string Nom;
         private string Prenom;
-        private string DateNaissance;
+        private DateTime DateNaissance;
         private string Adresse;
         private int CodePostal;
         private string Ville;
         private int Cotisation;
 
-        public Adherents(int lid, Clubs leclub, string leNb, string leSexe, string lenom, string lePrenom, string laNaiss, string lAdresse, int leCp, string laville, int leCotisation)
+        public Adherents(int lid, Clubs leclub, string leNb, string leSexe, string lenom, string lePrenom, DateTime laNaiss, string lAdresse, int leCp, string laville, int leCotisation)
         {
             this.id = lid;
             this.club = leclub;
@@ -106,12 +106,12 @@ namespace Projets_MDL
             return Prenom;
         }
 
-        public string getNaissance()
+        public DateTime getNaissance()
         {
             return this.DateNaissance;
         }
 
-        public string setNaissance(string laNaissance)
+        public DateTime setNaissance(DateTime laNaissance)
         {
             this.DateNaissance = laNaissance;
             return DateNaissance;

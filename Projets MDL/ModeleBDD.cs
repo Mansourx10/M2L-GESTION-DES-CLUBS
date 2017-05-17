@@ -240,6 +240,7 @@ namespace Projets_MDL
                 //On crée un datareader et on execute la commande
                 using (MySqlDataReader dataReader = command.ExecuteReader())
                 {
+                    
                     //On li la base de données et on ajoute dans la liste les ahderents de la base de données
                     while (dataReader.Read())
                     {
@@ -253,7 +254,7 @@ namespace Projets_MDL
                         lAdherent.setSexe((string)dataReader["Sexe"]);
                         lAdherent.setNom((string)dataReader["Nom"]);
                         lAdherent.setPrenom((string)dataReader["Prenom"]);
-                        lAdherent.setNaissance((string)dataReader["Naissance"]);
+                        lAdherent.setNaissance((DateTime)dataReader["Naissance"]);
                         lAdherent.setAdresse((string)dataReader["Adresse"]);
                         lAdherent.setCPT((int)dataReader["CodePostal"]);
                         lAdherent.setVille((string)dataReader["Ville"]);
@@ -261,7 +262,7 @@ namespace Projets_MDL
 
                         lesAdherents.Add(lAdherent);
                     }
-
+                    //string MySQLFormatDate = dateValue.ToString("yyyy-MM-dd HH:mm:ss")
                 }
 
                 connection.Close();
@@ -321,7 +322,7 @@ namespace Projets_MDL
         }
 
         /// <summary>
-        /// Methode qui permet de modifié les information dans la base de donnée
+        /// Methode qui permet de modifié un adhérent dans la base de donnée
         /// </summary>
         /// <param name="lAdherent">lAdherent a modifié</param>
         public void UPDATEAdherent(Adherents lAdherent)
@@ -350,6 +351,38 @@ namespace Projets_MDL
 
         }
 
+        public List<Adherents> VerifLicence()
+        {
+            List<Adherents> lesAdherents = new List<Adherents>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT Licence from adherents";
+
+                //Crée Commande
+                MySqlCommand command = new MySqlCommand(query, connection);
+                //On crée un datareader et on execute la commande
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+
+                    //On li la base de données et on ajoute dans la liste les ahderents
+                    while (dataReader.Read())
+                    {
+
+                        Adherents lAdherent = new Adherents();
+
+                        lAdherent.setLicence((string)dataReader["Licence"]);
+
+                        lesAdherents.Add(lAdherent);
+                    }
+                    //string MySQLFormatDate = dateValue.ToString("yyyy-MM-dd HH:mm:ss")
+                }
+
+                connection.Close();
+            }
+                return lesAdherents;
+        }
         /* /// <summary>
          /// La méthode Read retourne un Adherent en fonction de l'id en parametre. 
          /// </summary>
@@ -404,7 +437,7 @@ namespace Projets_MDL
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT e.id AS IdEven, e.Titre, e.LienSite, e.Adresse, e.Ville, e.CodePostal, e.Moment, e.Type, e.id_clubs, c.id AS IdClub, c.Nom From evenements AS e INNER JOIN Clubs AS c ON e.id_clubs = c.id";
+                string query = "SELECT e.id AS IdEven, e.Titre, e.LienSite, e.Adresse, e.Ville, e.CodePostal, e.Moment, e.Type, e.id_clubs, c.id AS IdClub, c.Nom From evenements AS e INNER JOIN Clubs AS c ON e.id_clubs = c.id ORDER BY e.id ";
 
                 //Crée Commande
                 MySqlCommand command = new MySqlCommand(query, connection);
@@ -424,7 +457,7 @@ namespace Projets_MDL
                         Event.setType((string)dataReader["Type"]);
                         Event.setTitre((string)dataReader["Titre"]);
                         Event.setClub(LeClub);
-                        Event.setMoment((string)dataReader["Moment"]);
+                        Event.setMoment((DateTime)dataReader["Moment"]);
                         Event.setAdresse((string)dataReader["Adresse"]);
                         Event.setCPT((int)dataReader["CodePostal"]);
                         Event.setVille((string)dataReader["Ville"]);
@@ -514,5 +547,6 @@ namespace Projets_MDL
 
         }
 
+        
     }
 }

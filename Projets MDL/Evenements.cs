@@ -16,9 +16,9 @@ namespace Projets_MDL
         private string Adresse;
         private string Ville;
         private int CodePostal;
-        private string Moment;
+        private DateTime Moment;
 
-        public Evenements(int Id, Clubs club, string leTitre, string leType, string leLien, string lAdresse, string laVille, int leCp, string leMoment)
+        public Evenements(int Id, Clubs club, string leTitre, string leType, string leLien, string lAdresse, string laVille, int leCp, DateTime leMoment)
         {
             this.Id = Id;
             this.leClub = club;
@@ -109,11 +109,11 @@ namespace Projets_MDL
             this.CodePostal = leCPT;
             return CodePostal;
         }
-        public string getMoment()
+        public DateTime getMoment()
         {
             return this.Moment;
         }
-        public string setMoment(string leMoment)
+        public DateTime setMoment(DateTime leMoment)
         {
             this.Moment = leMoment;
             return Moment;

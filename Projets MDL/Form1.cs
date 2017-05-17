@@ -20,19 +20,19 @@ namespace Projets_MDL
         private void clubsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form2 f2 = new Form2();
-            f2.Show();
+            f2.ShowDialog();
         }
 
         private void adherentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form3 f3 = new Form3();
-            f3.Show();
+            f3.ShowDialog();
         }
 
         private void evènementsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form4 f4 = new Form4();
-            f4.Show();
+            f4.ShowDialog();
         }
     }
 }

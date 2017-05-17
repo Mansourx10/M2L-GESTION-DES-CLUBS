@@ -10,13 +10,11 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 
-
-
 namespace Projets_MDL
 {
     public partial class Form2 : Form
     {
-
+        
         public Form2()
         {
             InitializeComponent();
@@ -62,88 +60,106 @@ namespace Projets_MDL
                 textEmail.Text = Ranger.Cells["EMAIL"].Value.ToString();
                 textTel.Text = Ranger.Cells["TELEPHONE"].Value.ToString();
                 comboBox1.Text = Ranger.Cells["TYPE"].Value.ToString();
-                labelID.Text = Ranger.Cells["ID"].Value.ToString();
+                textID.Text = Ranger.Cells["ID"].Value.ToString();
 
             }
         }
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            
-            TypeClub letype = new TypeClub();
-            letype.setLibelle(comboBox1.Text);
+            if (condition())
+            {
+                TypeClub letype = new TypeClub();
+                letype.setLibelle(comboBox1.Text);
 
-            Clubs club = new Clubs();
-            club.setLienSite(textLienSite.Text);
-            club.setNom(textNom.Text);
-            club.setMail(textEmail.Text);
-            club.setType(letype);
-            club.setAdresse(textAdresse.Text);
-            club.setCPT(Int32.Parse(textCPT.Text));
-            club.setVille(textVille.Text);
-            club.setTel(Int32.Parse(textTel.Text));
+                Clubs club = new Clubs();
+                club.setLienSite(textLienSite.Text);
+                club.setNom(textNom.Text);
+                club.setMail(textEmail.Text);
+                club.setType(letype);
+                club.setAdresse(textAdresse.Text);
+                club.setCPT(Int32.Parse(textCPT.Text));
+                club.setVille(textVille.Text);
+                club.setTel(Int32.Parse(textTel.Text));
 
-            ModeleBDD bd = new ModeleBDD();
+                ModeleBDD bd = new ModeleBDD();
 
-            bd.setClub(club);
+                bd.setClub(club);
 
 
-            textNom.Text = "";
-            textLienSite.Text = "";
-            comboBox1.Text = "";
-            textEmail.Text = "";
-            textAdresse.Text = "";
-            textCPT.Text = "";
-            textVille.Text = "";
-            textTel.Text = "";
-            labelInfo.Text = club.getNom() + " a été ajouter avec succès ";
-            dataGridView1.ClearSelection();
-            FillDataGridView();
+                textNom.Text = "";
+                textLienSite.Text = "";
+                comboBox1.Text = "";
+                textEmail.Text = "";
+                textAdresse.Text = "";
+                textCPT.Text = "";
+                textVille.Text = "";
+                textTel.Text = "";
+                labelInfo.Text = club.getNom() + " a été ajouter avec succès ";
+                dataGridView1.ClearSelection();
+                FillDataGridView();
+            } else
+            {
+                MessageBox.Show("Veuillez remplir tout les champs");
+            }
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            TypeClub letype = new TypeClub();
-            letype.setLibelle(comboBox1.Text);
+            if (condition())
+            {
+                TypeClub letype = new TypeClub();
+                letype.setLibelle(comboBox1.Text);
 
-            Clubs club = new Clubs();
+                Clubs club = new Clubs();
 
-            club.setId(Int32.Parse(labelID.Text));
-            club.setLienSite(textLienSite.Text);
-            club.setNom(textNom.Text);
-            club.setMail(textEmail.Text);
-            club.setType(letype);
-            club.setAdresse(textAdresse.Text);
-            club.setCPT(Int32.Parse(textCPT.Text));
-            club.setVille(textVille.Text);
-            club.setTel(Int32.Parse(textTel.Text));
+                club.setId(Int32.Parse(textID.Text));
+                club.setLienSite(textLienSite.Text);
+                club.setNom(textNom.Text);
+                club.setMail(textEmail.Text);
+                club.setType(letype);
+                club.setAdresse(textAdresse.Text);
+                club.setCPT(Int32.Parse(textCPT.Text));
+                club.setVille(textVille.Text);
+                club.setTel(Int32.Parse(textTel.Text));
 
-            ModeleBDD bd = new ModeleBDD();
+                ModeleBDD bd = new ModeleBDD();
 
-            bd.UPDATEClub(club);
+                bd.UPDATEClub(club);
 
-            labelInfo.Text = club.getNom() + " a été modifié ";
-            dataGridView1.ClearSelection();
-            FillDataGridView();
+                labelInfo.Text = club.getNom() + " a été modifié ";
+                dataGridView1.ClearSelection();
+                FillDataGridView();
+            } else
+            {
+                MessageBox.Show("Veuillez remplir tout les champs");
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            int id = Int32.Parse(labelID.Text);
-            ModeleBDD con = new ModeleBDD();
-            con.subClub(id);
-            labelInfo.Text = textNom + " a été supprimé";
-            labelID.Text = "";
-            textNom.Text = "";
-            textLienSite.Text = "";
-            comboBox1.Text = "";
-            textEmail.Text = "";
-            textAdresse.Text = "";
-            textCPT.Text = "";
-            textVille.Text = "";
-            textTel.Text = "";
-            dataGridView1.ClearSelection();
-            FillDataGridView();
+            if (condition())
+            {
+                int id = Int32.Parse(textID.Text);
+                ModeleBDD con = new ModeleBDD();
+                con.subClub(id);
+                labelInfo.Text = textNom + " a été supprimé";
+                
+                textID.Text = "";
+                textNom.Text = "";
+                textLienSite.Text = "";
+                comboBox1.Text = "";
+                textEmail.Text = "";
+                textAdresse.Text = "";
+                textCPT.Text = "";
+                textVille.Text = "";
+                textTel.Text = "";
+                dataGridView1.ClearSelection();
+                FillDataGridView();
+            } else
+            {
+                MessageBox.Show("Veuillez remplir tout les champs");
+            }
         }
 
         private void comboBox1_Click(object sender, EventArgs e)
@@ -161,6 +177,53 @@ namespace Projets_MDL
         {
             Form5Type F5 = new Form5Type();
             F5.Show();
+        }
+
+        private bool condition()
+        {
+            bool resultat;
+            if (textID.Text == "" || textNom.Text == "" || textLienSite.Text == "" || comboBox1.Text == "" || textEmail.Text == "" || textAdresse.Text == "" || textCPT.Text == "" || textVille.Text == "" || textTel.Text == "")
+            {
+                resultat = false;
+            } else {
+                resultat = true; 
+            }
+            return resultat;
+
+        }
+
+        private void textCPT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        void chiffre(System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void textTel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
     }
