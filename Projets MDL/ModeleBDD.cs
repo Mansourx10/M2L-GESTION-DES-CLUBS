@@ -26,7 +26,7 @@ namespace Projets_MDL
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
         }
- 
+
         //La methode est modifié //club
         /// <summary>
         /// Methode qui selection tous clubs sur la base de données
@@ -46,7 +46,7 @@ namespace Projets_MDL
                 //On crée un datareader et on execute la commande
                 using (MySqlDataReader dataReader = command.ExecuteReader())
                 {
-                    //On li la base de données et on ajiute dans la liste les ahderents de la base de données
+                    //On li la base de données et on ajoute dans la liste les ahderents de la base de données
                     while (dataReader.Read())
                     {
                         TypeClub Type = new TypeClub();
@@ -63,7 +63,7 @@ namespace Projets_MDL
                         lClub.setAdresse((string)dataReader["Adresse"]);
                         lClub.setCPT((int)dataReader["CodePostal"]);
                         lClub.setVille((string)dataReader["Ville"]);
-                        
+
                         lesClubs.Add(lClub);
                     }
 
@@ -72,7 +72,7 @@ namespace Projets_MDL
                 connection.Close();
 
                 return lesClubs;
-                
+
             }
         }
 
@@ -97,7 +97,7 @@ namespace Projets_MDL
                 command.Parameters.AddWithValue("@Type", leClub.getType().getLibelle());
                 command.ExecuteNonQuery();
                 connection.Close();
-                
+
             }
         }
 
@@ -148,7 +148,7 @@ namespace Projets_MDL
                 connection.Close();
             }
 
-          
+
         }
 
         //La methode est modifié //typeclub
@@ -177,7 +177,7 @@ namespace Projets_MDL
                         Type.setId((int)dataReader["Id"]);
                         Type.setLibelle((string)dataReader["Libelle"]);
 
-                        
+
 
                         lesTypeClub.Add(Type);
                     }
@@ -234,13 +234,13 @@ namespace Projets_MDL
             {
                 connection.Open();
                 string query = "SELECT a.id AS IdAdherent, a.Licence, a.Sexe, a.Nom, a.Prenom, a.Naissance, a.Adresse, a.CodePostal, a.Ville, a.Cotisation, c.id AS IdClub, c.Nom AS NomClub FROM adherents AS a INNER JOIN clubs AS c ON a.id_clubs=c.id";
-                
+
                 //Crée Commande
                 MySqlCommand command = new MySqlCommand(query, connection);
                 //On crée un datareader et on execute la commande
                 using (MySqlDataReader dataReader = command.ExecuteReader())
                 {
-                    
+
                     //On li la base de données et on ajoute dans la liste les ahderents de la base de données
                     while (dataReader.Read())
                     {
@@ -381,14 +381,14 @@ namespace Projets_MDL
 
                 connection.Close();
             }
-                return lesAdherents;
+            return lesAdherents;
         }
-        /* /// <summary>
-         /// La méthode Read retourne un Adherent en fonction de l'id en parametre. 
-         /// </summary>
-         /// <param name="id">id de l'adherent selectionnedans la dataGridView</param>
-         /// <returns>un adhrent</returns>
-         public Adherents Read(int id)
+        /// <summary>
+        /// La méthode Read retourne un Adherent en fonction de l'id en parametre. 
+        /// </summary>
+        /// <param name="id">id de l'adherent selectionnedans la dataGridView</param>
+        /// <returns>un adhrent</returns>
+        /* public Adherents Read(int id)
          {
              Adherents lAdherent = null;
 
@@ -444,7 +444,7 @@ namespace Projets_MDL
                 //On crée un datareader et on execute la commande
                 using (MySqlDataReader dataReader = command.ExecuteReader())
                 {
-                    //On li la base de données et on ajiute dans la liste les ahderents de la base de données
+                    //On li la base de données et on ajoute dans la liste les ahderents de la base de données
                     while (dataReader.Read())
                     {
                         Clubs LeClub = new Clubs();
@@ -547,6 +547,38 @@ namespace Projets_MDL
 
         }
 
-        
+
+        //Statistique Cotisation
+        public string AVGCotisation(Clubs leClub)
+        {
+            string moyenne = "";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                
+                
+                MySqlCommand command = connection.CreateCommand();
+                
+                command.CommandText = "SELECT AVG(adherents.Cotisation) as Moyenne FROM adherents INNER JOIN clubs ON adherents.id_clubs = clubs.id WHERE clubs.Nom =@Nom";
+                command.Parameters.AddWithValue("@Nom", leClub.getNom());
+
+                using (MySqlDataReader dataReader = command.ExecuteReader())
+                {
+
+                    Clubs LeClub = new Clubs();
+                    while (dataReader.Read())
+                    {
+                        LeClub.setCPT((int)dataReader["Moyenne"]);
+
+                    }
+
+                }
+
+                connection.Close();
+
+                moyenne = leClub.getCPT().ToString();
+                return moyenne;
+            }
+        }
     }
 }

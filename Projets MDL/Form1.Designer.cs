@@ -37,6 +37,7 @@
             this.clubsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adherentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.evènementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statistiqueCotisationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,7 +86,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clubsToolStripMenuItem,
             this.adherentsToolStripMenuItem,
-            this.evènementsToolStripMenuItem});
+            this.evènementsToolStripMenuItem,
+            this.statistiqueCotisationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(571, 24);
@@ -112,6 +114,13 @@
             this.evènementsToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.evènementsToolStripMenuItem.Text = "Evènements";
             this.evènementsToolStripMenuItem.Click += new System.EventHandler(this.evènementsToolStripMenuItem_Click);
+            // 
+            // statistiqueCotisationToolStripMenuItem
+            // 
+            this.statistiqueCotisationToolStripMenuItem.Name = "statistiqueCotisationToolStripMenuItem";
+            this.statistiqueCotisationToolStripMenuItem.Size = new System.Drawing.Size(131, 20);
+            this.statistiqueCotisationToolStripMenuItem.Text = "Statistique Cotisation";
+            this.statistiqueCotisationToolStripMenuItem.Click += new System.EventHandler(this.statistiqueCotisationToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -147,6 +156,7 @@
         private System.Windows.Forms.ToolStripMenuItem clubsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adherentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem evènementsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem statistiqueCotisationToolStripMenuItem;
     }
 }
 

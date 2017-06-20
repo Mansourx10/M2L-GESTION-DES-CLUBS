@@ -1,18 +1,19 @@
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\Projets MDL.exe.config
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\Projets MDL.exe
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\Projets MDL.pdb
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets MDL.csprojResolveAssemblyReference.cache
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form1.resources
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Properties.Resources.resources
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets MDL.csproj.GenerateResource.Cache
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets MDL.exe
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets MDL.pdb
-c:\users\mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form2.resources
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\Projets MDL.exe.config
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\Projets MDL.exe
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\Projets MDL.pdb
 C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\EntityFramework.dll
 C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\MySql.Data.dll
 C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\EntityFramework.xml
 C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form1.resources
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form2.resources
 C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form3.resources
 C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form4.resources
-C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\bin\Debug\MySql.Data.dll
-C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form5Type.resources
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form5Type.resources
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Properties.Resources.resources
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets MDL.csproj.GenerateResource.Cache
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets MDL.exe
+C:\Users\Mansour\Documents\Visual Studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets MDL.pdb
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets MDL.csprojResolveAssemblyReference.cache
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Debug\Projets_MDL.Form6.resources

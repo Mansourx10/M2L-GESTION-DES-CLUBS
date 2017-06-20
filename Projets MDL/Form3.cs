@@ -17,7 +17,7 @@ namespace Projets_MDL
         {
             InitializeComponent();
             FillDataGridView();
-           
+            
         }
 
         /// <summary>
@@ -37,16 +37,22 @@ namespace Projets_MDL
             Table.Columns.Add("COTISATION", typeof(int));
             Table.Columns.Add("VILLE", typeof(string));
             Table.Columns.Add("NAISSANCE", typeof(DateTime));
-            
-            ModeleBDD con = new ModeleBDD();
-
-            foreach(Adherents adherent in con.getAdherents())
+            try
             {
-                Table.Rows.Add(adherent.getId(), adherent.getClub().getNom(), adherent.getSexe(), adherent.getNom(), adherent.getPrenom(), adherent.getAdresse(), adherent.getCPT(), adherent.getLicence(), adherent.getCotisation(), adherent.getVille(), adherent.getNaissance());
-            }
+                ModeleBDD con = new ModeleBDD();
 
-            dataGridView1.DataSource = Table;
-            dataGridView1.AutoResizeColumns();
+                foreach (Adherents adherent in con.getAdherents())
+                {
+                    Table.Rows.Add(adherent.getId(), adherent.getClub().getNom(), adherent.getSexe(), adherent.getNom(), adherent.getPrenom(), adherent.getAdresse(), adherent.getCPT(), adherent.getLicence(), adherent.getCotisation(), adherent.getVille(), adherent.getNaissance());
+                }
+
+                dataGridView1.DataSource = Table;
+                dataGridView1.AutoResizeColumns();
+            }catch(Exception e)
+            {
+                MessageBox.Show("Message d'erreur : " + e.Message + " \nType de l'exception " + e.GetType() + " \nPile d'appel" + e.StackTrace);
+
+            }
         }
 
         /// <summary>
@@ -97,23 +103,30 @@ namespace Projets_MDL
                     adherent.setVille(textVille.Text);
                     adherent.setCotisation(Int32.Parse(textCotisation.Text));
 
-                    ModeleBDD bd = new ModeleBDD();
+                    try
+                    {
+                        ModeleBDD bd = new ModeleBDD();
 
-                    bd.setAdherent(adherent);
+                        bd.setAdherent(adherent);
 
-                    comboBox1.Text = "";
-                    comboBox2.Text = "";
-                    textNom.Text = "";
-                    textPrenom.Text = "";
-                    textLicence.Text = "";
-                    //dateTimePicker1.Value = DateTime.Now;
-                    textAdresse.Text = "";
-                    textCodePostal.Text = "";
-                    textVille.Text = "";
-                    textCotisation.Text = "";
-                    label10.Text = adherent.getNom() + " a été ajouter avec succès ";
-                    dataGridView1.ClearSelection();
-                    FillDataGridView();
+                        comboBox1.Text = "";
+                        comboBox2.Text = "";
+                        textNom.Text = "";
+                        textPrenom.Text = "";
+                        textLicence.Text = "";
+                        //dateTimePicker1.Value = DateTime.Now;
+                        textAdresse.Text = "";
+                        textCodePostal.Text = "";
+                        textVille.Text = "";
+                        textCotisation.Text = "";
+                        label10.Text = adherent.getNom() + " a été ajouter avec succès ";
+                        dataGridView1.ClearSelection();
+                        FillDataGridView();
+                    }catch(Exception e1)
+                    {
+                        MessageBox.Show("Message d'erreur : " + e1.Message + " \nType de l'exception " + e1.GetType() + " \nPile d'appel" + e1.StackTrace);
+
+                    }
                 } else
                     {
                         MessageBox.Show("La Licence doit être unique");
@@ -149,25 +162,30 @@ namespace Projets_MDL
                     adherent.setCPT(Int32.Parse(textCodePostal.Text));
                     adherent.setVille(textVille.Text);
                     adherent.setCotisation(Int32.Parse(textCotisation.Text));
+                    try
+                    {
+                        ModeleBDD bd = new ModeleBDD();
 
-                    ModeleBDD bd = new ModeleBDD();
+                        bd.UPDATEAdherent(adherent);
 
-                    bd.UPDATEAdherent(adherent);
-
-                    comboBox1.Text = "";
-                    comboBox2.Text = "";
-                    textID.Text = "";
-                    textNom.Text = "";
-                    textPrenom.Text = "";
-                    textLicence.Text = "";
-                    //dateTimePicker1.Value = DateTime.Now;
-                    textAdresse.Text = "";
-                    textCodePostal.Text = "";
-                    textVille.Text = "";
-                    textCotisation.Text = "";
-                    label10.Text = adherent.getNom() + " a été modifié ";
-                    dataGridView1.ClearSelection();
-                    FillDataGridView();
+                        comboBox1.Text = "";
+                        comboBox2.Text = "";
+                        textID.Text = "";
+                        textNom.Text = "";
+                        textPrenom.Text = "";
+                        textLicence.Text = "";
+                        //dateTimePicker1.Value = DateTime.Now;
+                        textAdresse.Text = "";
+                        textCodePostal.Text = "";
+                        textVille.Text = "";
+                        textCotisation.Text = "";
+                        label10.Text = adherent.getNom() + " a été modifié ";
+                        dataGridView1.ClearSelection();
+                        FillDataGridView();
+                    }catch(Exception e2)
+                    {
+                        MessageBox.Show("Message d'erreur : " + e2.Message + " \nType de l'exception " + e2.GetType() + " \nPile d'appel" + e2.StackTrace);
+                    }
                 } else
                 {
                     MessageBox.Show("La licence doit être unique");
@@ -188,29 +206,36 @@ namespace Projets_MDL
             if (condition())
             {
                 int id = Int32.Parse(textID.Text);
-                ModeleBDD con = new ModeleBDD();
-                con.supAdherents(id);
-                label10.Text = textNom.Text + " a été supprimé ";
-                comboBox1.Text = "";
-                comboBox2.Text = "";
-                textID.Text = "";
-                textNom.Text = "";
-                textPrenom.Text = "";
-                textLicence.Text = "";
-                //dateTimePicker1.Value = DateTime.Now;
-                textAdresse.Text = "";
-                textCodePostal.Text = "";
-                textVille.Text = "";
-                textCotisation.Text = "";
+                try
+                {
+                    ModeleBDD con = new ModeleBDD();
+                    con.supAdherents(id);
+                    label10.Text = textNom.Text + " a été supprimé ";
+                    comboBox1.Text = "";
+                    comboBox2.Text = "";
+                    textID.Text = "";
+                    textNom.Text = "";
+                    textPrenom.Text = "";
+                    textLicence.Text = "";
+                    //dateTimePicker1.Value = DateTime.Now;
+                    textAdresse.Text = "";
+                    textCodePostal.Text = "";
+                    textVille.Text = "";
+                    textCotisation.Text = "";
 
-                dataGridView1.ClearSelection();
-                FillDataGridView();
+                    dataGridView1.ClearSelection();
+                    FillDataGridView();
+                }catch(Exception e3)
+                {
+                    MessageBox.Show("Message d'erreur : " + e3.Message + " \nType de l'exception " + e3.GetType() + " \nPile d'appel" + e3.StackTrace);
+                }
             } else
             {
                 MessageBox.Show("Veuilez remplir tout les champs");
             }
         }
         
+
         /// <summary>
         /// Alimente la liste avec les clubs
         /// </summary>
@@ -219,11 +244,18 @@ namespace Projets_MDL
         private void comboBox2_Click(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
-            ModeleBDD con = new ModeleBDD();
-            List<Clubs> ListeType = con.getClubs();
-            foreach (Clubs liste in ListeType)
+            try
             {
-                comboBox2.Items.Add(liste.getNom().ToString());
+                ModeleBDD con = new ModeleBDD();
+                List<Clubs> ListeType = con.getClubs();
+                foreach (Clubs liste in ListeType)
+                {
+                    comboBox2.Items.Add(liste.getNom().ToString());
+                }
+            }catch(Exception e4)
+            {
+                MessageBox.Show("Message d'erreur : " + e4.Message + " \nType de l'exception " + e4.GetType() + " \nPile d'appel" + e4.StackTrace);
+
             }
         }
 
@@ -253,17 +285,25 @@ namespace Projets_MDL
         private bool verifiLicence()
         {
             bool unique = false;
-
-            ModeleBDD con = new ModeleBDD();
-            foreach(var adherent in con.VerifLicence())
+            try
             {
-                if(adherent.getLicence() == textLicence.Text)
+                ModeleBDD con = new ModeleBDD();
+                foreach (var adherent in con.VerifLicence())
                 {
-                    unique = false;
-                } else
-                {
-                    unique = true;
+                    if (adherent.getLicence() == textLicence.Text)
+                    {
+                        unique = false;
+                    }
+                    else
+                    {
+                        unique = true;
+                    }
                 }
+                
+            }catch(Exception e5)
+            {
+                MessageBox.Show("Message d'erreur : " + e5.Message + " \nType de l'exception " + e5.GetType() + " \nPile d'appel" + e5.StackTrace);
+
             }
             return unique;
         }
@@ -275,6 +315,7 @@ namespace Projets_MDL
         /// <param name="e"></param>
         private void Form3_Load(object sender, EventArgs e)
         {
+            
             comboBox1.SelectedIndex = 0;
             dateTimePicker1.MaxDate = DateTime.Now;
             dateTimePicker1.Value = DateTime.Now;

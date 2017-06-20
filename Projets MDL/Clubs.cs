@@ -41,10 +41,10 @@ namespace Projets_MDL
             return this.Id;
         }
 
-        public int setId(int lId)
+        public void setId(int lId)
         {
             this.Id = lId;
-            return Id;
+            
 
         }
 
@@ -53,10 +53,10 @@ namespace Projets_MDL
             return this.Nom;
         }
 
-        public string setNom(string leNom)
+        public void setNom(string leNom)
         {
             this.Nom = leNom;
-            return Nom;
+           
             
         }
 
@@ -65,10 +65,10 @@ namespace Projets_MDL
             return this.LienSite;
         }
 
-        public string setLienSite(string leLien)
+        public void setLienSite(string leLien)
         {
             this.LienSite = leLien;
-            return LienSite;
+           
 
         }
 
@@ -77,10 +77,10 @@ namespace Projets_MDL
             return this.Adresse;
         }
 
-        public string setAdresse(string lAdresse)
+        public void setAdresse(string lAdresse)
         {
             this.Adresse = lAdresse;
-            return Adresse;
+            
 
         }
 
@@ -89,10 +89,10 @@ namespace Projets_MDL
             return this.Ville;
         }
 
-        public string setVille(string leVille)
+        public void setVille(string leVille)
         {
             this.Ville = leVille;
-            return Ville;
+            
 
         }
 
@@ -101,11 +101,9 @@ namespace Projets_MDL
             return this.CodePostal;
         }
 
-        public int setCPT(int leCPT)
+        public void setCPT(int leCPT)
         {
             this.CodePostal = leCPT;
-            return CodePostal;
-
         }
 
         public int getTel()
@@ -113,10 +111,10 @@ namespace Projets_MDL
             return this.Telephone;
         }
 
-        public int setTel(int leTel)
+        public void setTel(int leTel)
         {
             this.Telephone = leTel;
-            return Telephone;
+           
 
         }
 
@@ -125,10 +123,10 @@ namespace Projets_MDL
             return this.EMail;
         }
 
-        public string setMail(string leMail)
+        public void setMail(string leMail)
         {
             this.EMail = leMail;
-            return EMail;
+            
 
         }
 
@@ -138,11 +136,10 @@ namespace Projets_MDL
             return this.Type;
         }
 
-        public TypeClub setType(TypeClub leType)
+        public void setType(TypeClub leType)
         {
             this.Type = leType;
-            return Type;
-
+           
         }
         
     }

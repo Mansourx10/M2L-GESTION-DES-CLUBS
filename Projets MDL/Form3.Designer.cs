@@ -185,9 +185,11 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 192);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(682, 255);
             this.dataGridView1.TabIndex = 16;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -196,11 +198,11 @@
             // 
             this.buttonInsertion.BackColor = System.Drawing.Color.Lime;
             this.buttonInsertion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonInsertion.Location = new System.Drawing.Point(432, 136);
+            this.buttonInsertion.Location = new System.Drawing.Point(432, 131);
             this.buttonInsertion.Name = "buttonInsertion";
             this.buttonInsertion.Size = new System.Drawing.Size(75, 23);
             this.buttonInsertion.TabIndex = 17;
-            this.buttonInsertion.Text = "Insertion";
+            this.buttonInsertion.Text = "Ajouter";
             this.buttonInsertion.UseVisualStyleBackColor = false;
             this.buttonInsertion.Click += new System.EventHandler(this.buttonInsertion_Click);
             // 
@@ -208,11 +210,11 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Yellow;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(523, 137);
+            this.button2.Location = new System.Drawing.Point(523, 132);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 18;
-            this.button2.Text = "Modifié";
+            this.button2.Text = "Modifier";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
@@ -220,7 +222,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Red;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(617, 137);
+            this.button3.Location = new System.Drawing.Point(617, 132);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 19;
@@ -271,7 +273,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(560, 169);
+            this.label10.Location = new System.Drawing.Point(541, 169);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(16, 13);
             this.label10.TabIndex = 27;
@@ -291,7 +293,7 @@
             // 
             // textID
             // 
-            this.textID.Location = new System.Drawing.Point(491, 101);
+            this.textID.Location = new System.Drawing.Point(508, 87);
             this.textID.Name = "textID";
             this.textID.Size = new System.Drawing.Size(126, 20);
             this.textID.TabIndex = 29;

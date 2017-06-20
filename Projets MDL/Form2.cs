@@ -18,7 +18,7 @@ namespace Projets_MDL
         public Form2()
         {
             InitializeComponent();
-            FillDataGridView();
+            FillDataGridView(); 
         }
 
         void FillDataGridView()
@@ -34,17 +34,23 @@ namespace Projets_MDL
             Table.Columns.Add("TELEPHONE", typeof(int));
             Table.Columns.Add("EMAIL", typeof(string));
             Table.Columns.Add("TYPE", typeof(string));
-
-            ModeleBDD con = new ModeleBDD();
-
-            foreach (Clubs Club in con.getClubs())
+            try
             {
-                Table.Rows.Add( Club.getId(), Club.getNom(),Club.getLienSite(), Club.getAdresse(), Club.getVille(), Club.getCPT(), Club.getTel(), Club.getEMail(), Club.getType().getLibelle());
+                ModeleBDD con = new ModeleBDD();
+
+                foreach (Clubs Club in con.getClubs())
+                {
+                    Table.Rows.Add(Club.getId(), Club.getNom(), Club.getLienSite(), Club.getAdresse(), Club.getVille(), Club.getCPT(), Club.getTel(), Club.getEMail(), Club.getType().getLibelle());
+
+                }
+
+                dataGridView1.DataSource = Table;
+                dataGridView1.AutoResizeColumns(); 
+            }catch(Exception e)
+            {
+                MessageBox.Show("Message d'erreur : " + e.Message + " \nType de l'exception " + e.GetType() + " \nPile d'appel" + e.StackTrace);
 
             }
-
-            dataGridView1.DataSource = Table;
-            dataGridView1.AutoResizeColumns();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -82,22 +88,29 @@ namespace Projets_MDL
                 club.setVille(textVille.Text);
                 club.setTel(Int32.Parse(textTel.Text));
 
-                ModeleBDD bd = new ModeleBDD();
+                try
+                {
+                    ModeleBDD bd = new ModeleBDD();
 
-                bd.setClub(club);
+                    bd.setClub(club);
 
 
-                textNom.Text = "";
-                textLienSite.Text = "";
-                comboBox1.Text = "";
-                textEmail.Text = "";
-                textAdresse.Text = "";
-                textCPT.Text = "";
-                textVille.Text = "";
-                textTel.Text = "";
-                labelInfo.Text = club.getNom() + " a été ajouter avec succès ";
-                dataGridView1.ClearSelection();
-                FillDataGridView();
+                    textNom.Text = "";
+                    textLienSite.Text = "";
+                    comboBox1.Text = "";
+                    textEmail.Text = "";
+                    textAdresse.Text = "";
+                    textCPT.Text = "";
+                    textVille.Text = "";
+                    textTel.Text = "";
+                    labelInfo.Text = club.getNom() + " a été ajouter avec succès ";
+                    dataGridView1.ClearSelection();
+                    FillDataGridView();
+                }catch(Exception e1)
+                {
+                    MessageBox.Show("Message d'erreur : " + e1.Message + " \nType de l'exception " + e1.GetType() + " \nPile d'appel" + e1.StackTrace);
+
+                }
             } else
             {
                 MessageBox.Show("Veuillez remplir tout les champs");
@@ -123,13 +136,19 @@ namespace Projets_MDL
                 club.setVille(textVille.Text);
                 club.setTel(Int32.Parse(textTel.Text));
 
-                ModeleBDD bd = new ModeleBDD();
+                try
+                {
+                    ModeleBDD bd = new ModeleBDD();
 
-                bd.UPDATEClub(club);
+                    bd.UPDATEClub(club);
 
-                labelInfo.Text = club.getNom() + " a été modifié ";
-                dataGridView1.ClearSelection();
-                FillDataGridView();
+                    labelInfo.Text = club.getNom() + " a été modifié ";
+                    dataGridView1.ClearSelection();
+                    FillDataGridView();
+                }catch(Exception e2)
+                {
+                    MessageBox.Show("Message d'erreur : " + e2.Message + " \nType de l'exception " + e2.GetType() + " \nPile d'appel" + e2.StackTrace);
+                }
             } else
             {
                 MessageBox.Show("Veuillez remplir tout les champs");
@@ -141,21 +160,27 @@ namespace Projets_MDL
             if (condition())
             {
                 int id = Int32.Parse(textID.Text);
-                ModeleBDD con = new ModeleBDD();
-                con.subClub(id);
-                labelInfo.Text = textNom + " a été supprimé";
-                
-                textID.Text = "";
-                textNom.Text = "";
-                textLienSite.Text = "";
-                comboBox1.Text = "";
-                textEmail.Text = "";
-                textAdresse.Text = "";
-                textCPT.Text = "";
-                textVille.Text = "";
-                textTel.Text = "";
-                dataGridView1.ClearSelection();
-                FillDataGridView();
+                try
+                {
+                    ModeleBDD con = new ModeleBDD();
+                    con.subClub(id);
+                    labelInfo.Text = textNom + " a été supprimé";
+
+                    textID.Text = "";
+                    textNom.Text = "";
+                    textLienSite.Text = "";
+                    comboBox1.Text = "";
+                    textEmail.Text = "";
+                    textAdresse.Text = "";
+                    textCPT.Text = "";
+                    textVille.Text = "";
+                    textTel.Text = "";
+                    dataGridView1.ClearSelection();
+                    FillDataGridView();
+                }catch(Exception e3)
+                {
+                    MessageBox.Show("Message d'erreur : " + e3.Message + " \nType de l'exception " + e3.GetType() + " \nPile d'appel" + e3.StackTrace);
+                }
             } else
             {
                 MessageBox.Show("Veuillez remplir tout les champs");
@@ -165,11 +190,18 @@ namespace Projets_MDL
         private void comboBox1_Click(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
-            ModeleBDD con = new ModeleBDD();
-            List<TypeClub> ListeType = con.getTypeClub();
-            foreach (TypeClub liste in ListeType)
+            try
             {
-                comboBox1.Items.Add(liste.getLibelle().ToString());
+                ModeleBDD con = new ModeleBDD();
+                List<TypeClub> ListeType = con.getTypeClub();
+                foreach (TypeClub liste in ListeType)
+                {
+                    comboBox1.Items.Add(liste.getLibelle().ToString());
+                }
+            }catch(Exception e4)
+            {
+                MessageBox.Show("Message d'erreur : " + e4.Message + " \nType de l'exception " + e4.GetType() + " \nPile d'appel" + e4.StackTrace);
+
             }
         }
 
@@ -206,11 +238,11 @@ namespace Projets_MDL
             }
         }
 
-        void chiffre(System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar))
-                e.Handled = true;
-        }
+        //void chiffre(System.Windows.Forms.KeyPressEventArgs e)
+        //{
+        //    if (!char.IsDigit(e.KeyChar))
+        //        e.Handled = true;
+        //}
 
         private void textTel_KeyPress(object sender, KeyPressEventArgs e)
         {

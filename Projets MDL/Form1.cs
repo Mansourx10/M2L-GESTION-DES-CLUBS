@@ -34,5 +34,11 @@ namespace Projets_MDL
             Form4 f4 = new Form4();
             f4.ShowDialog();
         }
+
+        private void statistiqueCotisationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form6 f6 = new Form6();
+            f6.ShowDialog();
+        }
     }
 }

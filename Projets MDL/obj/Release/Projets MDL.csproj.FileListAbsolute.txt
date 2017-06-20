@@ -1,0 +1,18 @@
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Release\Projets MDL.exe.config
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Release\Projets MDL.exe
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Release\Projets MDL.pdb
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Release\EntityFramework.dll
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Release\MySql.Data.dll
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Release\EntityFramework.xml
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets MDL.csprojResolveAssemblyReference.cache
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets_MDL.Form1.resources
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets_MDL.Form2.resources
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets_MDL.Form3.resources
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets_MDL.Form4.resources
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets_MDL.Form5Type.resources
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets_MDL.Properties.Resources.resources
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets MDL.csproj.GenerateResource.Cache
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets MDL.exe
+C:\Users\Mansour\documents\visual studio 2015\Projects\Projets MDL\Projets MDL\obj\Release\Projets MDL.pdb

@@ -20,41 +20,68 @@ namespace Projets_MDL
         
          void FillList()
         {
-            
-            ModeleBDD con = new ModeleBDD();
-            List<TypeClub> ListType = con.getTypeClub();
-            foreach(TypeClub leType in ListType)
+            try
             {
-                listBox1.Items.Add(leType.getLibelle().ToString());
+                ModeleBDD con = new ModeleBDD();
+                List<TypeClub> ListType = con.getTypeClub();
+                foreach (TypeClub leType in ListType)
+                {
+                    listBox1.Items.Add(leType.getLibelle().ToString());
+                }
+            }catch(Exception e1)
+            {
+                MessageBox.Show("Message d'erreur : " + e1.Message + " \nType de l'exception " + e1.GetType() + " \nPile d'appel" + e1.StackTrace);
+
             }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            ModeleBDD con = new ModeleBDD();
+            if (textSport.Text != "")
+            {
+                try
+                {
+                    ModeleBDD con = new ModeleBDD();
 
-            TypeClub Type = new TypeClub();
+                    TypeClub Type = new TypeClub();
 
-            Type.setLibelle(textSport.Text);
+                    Type.setLibelle(textSport.Text);
 
-            con.setTypeSport(Type);
-            textSport.Text = "";
-            listBox1.Items.Clear();
-            FillList();
+                    con.setTypeSport(Type);
+                    textSport.Text = "";
+                    listBox1.Items.Clear();
+                    FillList();
+                }catch(Exception e1)
+                {
+                    MessageBox.Show("Message d'erreur : " + e1.Message + " \nType de l'exception " + e1.GetType() + " \nPile d'appel" + e1.StackTrace);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("....");
+            }
         }
 
         private void buttonSup_Click(object sender, EventArgs e)
         {
-            ModeleBDD con = new ModeleBDD();
+            try
+            {
+                ModeleBDD con = new ModeleBDD();
 
-            TypeClub Type = new TypeClub();
+                TypeClub Type = new TypeClub();
 
-            Type.setLibelle(textSport.Text);
+                Type.setLibelle(textSport.Text);
 
-            con.supTypeSport(Type);
-            textSport.Text = "";
-            listBox1.Items.Clear();
-            FillList();
+                con.supTypeSport(Type);
+                textSport.Text = "";
+                listBox1.Items.Clear();
+                FillList();
+            }catch(Exception e2)
+            {
+                MessageBox.Show("Message d'erreur : " + e2.Message + " \nType de l'exception " + e2.GetType() + " \nPile d'appel" + e2.StackTrace);
+
+            }
         }
 
         private void listBox1_MouseClick(object sender, MouseEventArgs e)

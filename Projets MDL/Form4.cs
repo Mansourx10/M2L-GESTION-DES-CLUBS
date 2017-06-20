@@ -33,17 +33,24 @@ namespace Projets_MDL
             Table.Columns.Add("VILLE", typeof(string));
             Table.Columns.Add("CODEPOSTAL", typeof(int));
             Table.Columns.Add("DATE", typeof(DateTime));
-            
-            ModeleBDD con = new ModeleBDD();
 
-            foreach(Evenements E in con.getEvent())
+            try
             {
-                Table.Rows.Add(E.getId(), E.getClub().getNom(), E.getTitre(), E.getType(), E.getLienSite(), E.getAdresse(), E.getVille(), E.getCPT(), E.getMoment());
+                ModeleBDD con = new ModeleBDD();
 
+                foreach (Evenements E in con.getEvent())
+                {
+                    Table.Rows.Add(E.getId(), E.getClub().getNom(), E.getTitre(), E.getType(), E.getLienSite(), E.getAdresse(), E.getVille(), E.getCPT(), E.getMoment());
+                }
+
+                dataGridView1.DataSource = Table;
+                dataGridView1.AutoResizeColumns();
             }
-
-            dataGridView1.DataSource = Table;
-            dataGridView1.AutoResizeColumns();
+            catch (Exception e)
+            {
+                MessageBox.Show("Message d'erreur : " + e.Message + " \nType de l'exception " + e.GetType() + " \nPile d'appel" + e.StackTrace);
+                 
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -80,21 +87,29 @@ namespace Projets_MDL
                 Event.setVille(textBox7.Text);
                 Event.setCPT(Int32.Parse(textBox4.Text));
                 Event.setAdresse(textBox3.Text);
-                ModeleBDD con = new ModeleBDD();
-                con.setEvent(Event);
+                try
+                {
+                    ModeleBDD con = new ModeleBDD();
+                    con.setEvent(Event);
 
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                dateTimePicker1.Value = DateTime.Now;
-                textBox7.Text = "";
-                comboBox1.Text = "";
-                comboBox2.Text = "";
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                    dateTimePicker1.Value = DateTime.Now;
+                    textBox7.Text = "";
+                    comboBox1.Text = "";
+                    comboBox2.Text = "";
 
-                
-                dataGridView1.ClearSelection();
-                FillDataGridView();
+
+                    dataGridView1.ClearSelection();
+                    FillDataGridView();
+                }catch(Exception e1)
+                {
+
+                    MessageBox.Show("Message d'erreur : " + e1.Message + " \nType de l'exception " + e1.GetType() + " \nPile d'appel" + e1.StackTrace);
+
+                }
             } else
             {
                 MessageBox.Show("Veuillez remplir tout les champs");
@@ -119,15 +134,23 @@ namespace Projets_MDL
                 Event.setVille(textBox7.Text);
                 Event.setCPT(Int32.Parse(textBox4.Text));
 
+                try
+                {
 
-                ModeleBDD con = new ModeleBDD();
 
-                con.UPDATEEvent(Event);
+                    ModeleBDD con = new ModeleBDD();
 
-                //labelInfo.Text = club.getNom() + " a été modifié ";
-                dataGridView1.ClearSelection();
-                FillDataGridView();
-            }else
+                    con.UPDATEEvent(Event);
+
+                    //labelInfo.Text = club.getNom() + " a été modifié ";
+                    dataGridView1.ClearSelection();
+                    FillDataGridView();
+                }catch(Exception e2)
+                {
+                    MessageBox.Show("Message d'erreur : " + e2.Message + " \nType de l'exception " + e2.GetType() + " \nPile d'appel" + e2.StackTrace);
+                }
+            }
+            else
             {
                 MessageBox.Show("Veuillez remplir tout les champs");
             }
@@ -138,20 +161,26 @@ namespace Projets_MDL
             if (condition())
             {
                 int id = Int32.Parse(textID.Text);
-                ModeleBDD con = new ModeleBDD();
-                con.supEvent(id);
+                try
+                {
+                    ModeleBDD con = new ModeleBDD();
+                    con.supEvent(id);
 
-                textID.Text = "";
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                dateTimePicker1.Value = DateTime.Now;
-                textBox7.Text = "";
-                comboBox1.Text = "";
-                comboBox2.Text = "";
-                dataGridView1.ClearSelection();
-                FillDataGridView();
+                    textID.Text = "";
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                    dateTimePicker1.Value = DateTime.Now;
+                    textBox7.Text = "";
+                    comboBox1.Text = "";
+                    comboBox2.Text = "";
+                    dataGridView1.ClearSelection();
+                    FillDataGridView();
+                }catch(Exception e3)
+                {
+                    MessageBox.Show("Message d'erreur : " + e3.Message + " \nType de l'exception " + e3.GetType() + " \nPile d'appel" + e3.StackTrace);
+                }
             } else
             {
                 MessageBox.Show("Veuillez remplir tout les champs");
@@ -161,11 +190,17 @@ namespace Projets_MDL
         private void comboBox1_Click(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
-            ModeleBDD con = new ModeleBDD();
-            List<Clubs> ListeClubs = con.getClubs();
-            foreach (Clubs liste in ListeClubs)
+            try
             {
-                comboBox1.Items.Add(liste.getNom().ToString());
+                ModeleBDD con = new ModeleBDD();
+                List<Clubs> ListeClubs = con.getClubs();
+                foreach (Clubs liste in ListeClubs)
+                {
+                    comboBox1.Items.Add(liste.getNom().ToString());
+                }
+            }catch(Exception e4)
+            {
+                MessageBox.Show("Message d'erreur : " + e4.Message + " \nType de l'exception " + e4.GetType() + " \nPile d'appel" + e4.StackTrace);
             }
         }
 
@@ -195,6 +230,11 @@ namespace Projets_MDL
             {
                 e.Handled = true;
             }
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+            dateTimePicker1.MinDate = DateTime.Now;
         }
     }
 }
